@@ -13,4 +13,4 @@ text highlight
 
 list of features for API
 async endpoint - get big list
-orm vs raw sq
+orm vs raw sql
