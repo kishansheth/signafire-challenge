@@ -12,6 +12,8 @@ If you're more interested in backend please focus on making the APIs work well a
 
 If you're full-stack please build out both tracks.
 
+If you have any questions please contact `rebecca@signafire.com`.
+
 ## Challenge
 
 This test must be completed in javascript. Submissions in other languages will not be assessed.
@@ -77,7 +79,7 @@ Reference the wireframe included in this repo under `/assets` folder. Match styl
   - Refresh the view after pressing the button
   - Messages with `isTrashed` set to true should not be displayed
 
-### Additional Features
+#### Additional Features
 
 - Sort
   - Add a basic button that allows a user to sort messages by score
