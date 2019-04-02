@@ -41,9 +41,15 @@ const Buttons = styled.div`
     width: 15%;
 `;
 
+const StarButton = styled.button`
+    width: 100px;
+    background-color: ${props => props.starred ? "yellow": "white"};
+`;
+
 class Message extends React.Component {
     constructor(props) {
         super(props);
+        this.toggleStarred = this.toggleStarred.bind(this);
 
         var d = new Date(this.props.content.timestamp);
         var date_string = d.toLocaleString('en-US', {month: 'short'}) + " " + d.getDate() + ', ' + d.getFullYear(); 
@@ -54,6 +60,11 @@ class Message extends React.Component {
         };
     }
     
+    toggleStarred() {
+        this.setState({starred:!this.state.starred});
+        console.log(this.state.starred);
+    }
+
     render() {
         return (
             <MessageContainer>
@@ -66,7 +77,7 @@ class Message extends React.Component {
                     <div className={'message_body'}>{this.props.content.content}</div>
                 </Content>
                 <Buttons>
-                
+                    <StarButton onClick={this.toggleStarred} starred={this.state.starred}>{this.state.starred == true ? "Starred!": "Star Message!"}</StarButton>
                 </Buttons>
             </MessageContainer>
         )
