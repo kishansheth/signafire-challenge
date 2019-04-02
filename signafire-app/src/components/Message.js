@@ -24,7 +24,7 @@ const Profile = styled.div`
 `;
 
 const Content = styled.div`
-    width: 75%;
+    width: 70%;
     text-align: left;
     .metadata {
         padding: 10px;
@@ -38,12 +38,18 @@ const Content = styled.div`
 `;
 
 const Buttons = styled.div`
-    width: 15%;
+    width: 20%;
+    text-align: right;
+    padding: 10px;
 `;
 
 const StarButton = styled.button`
-    width: 100px;
-    background-color: ${props => props.starred ? "yellow": "white"};
+    width: 150px;
+    font-size: ${theme.font.sizes.h5};
+    padding: 20px;
+    border: 1px solid ${theme.colors.outline};
+    background-color: ${props => props.starred ? "DarkGoldenrod": "white"};
+    color: ${props => props.starred ? "white": "black"};
 `;
 
 class Message extends React.Component {
@@ -62,6 +68,7 @@ class Message extends React.Component {
     
     toggleStarred() {
         this.setState({starred:!this.state.starred});
+        this.props.changeStarred(!this.state.starred);
         console.log(this.state.starred);
     }
 
