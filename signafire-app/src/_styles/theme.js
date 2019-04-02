@@ -1,18 +1,20 @@
 const theme = {
   colors: {
-    main: '#AAAAAA',
+    background: '#EEEEEE',
+    outline: '#AAAAAA',
   },
   font: {
     colors: {
+      light: '#555555',
       dark: '#000000',
     },
     sizes: {
-      h1: '3.052em',
-      h2: '2.441em',
-      h3: '1.953em',
-      h4: '1.563em',
-      h5: '1.25em',
-      p:  '.75em',
+      h1: '50px',
+      h2: '40px',
+      h3: '30px',
+      h4: '20px',
+      h5: '16px',
+      p:  '12px',
     },
     weights: {
       thin: '100',
