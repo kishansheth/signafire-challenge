@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import { theme } from '../../_styles';
-import sflogo from '../../_images/logo-sf-small.png';
+import sflogo from '../../_resources/logo-sf-small.png';
 
 const HeaderContainer = styled.div`
     display: inline-block;
+    position: fixed;
     box-sizing: border-box;
     width: 100%;
     padding: 15px;
