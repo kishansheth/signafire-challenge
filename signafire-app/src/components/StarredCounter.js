@@ -5,7 +5,6 @@ import { theme } from '../_styles';
 const StarredCounterContainer = styled.div`
     display: inline-block;
     box-sizing: border-box;
-    width: 100%;
     margin-top: 75px;
     margin-bottom: 15px;
     font-size: ${theme.font.sizes.h3};

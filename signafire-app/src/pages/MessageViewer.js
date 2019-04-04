@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import { theme } from '../_styles';
 import { Header } from '../components/header';
-import { StarredCounter, Message } from '../components';
+import { StarredCounter, Message, SearchForm } from '../components';
 import Messages from './messages.json';
 
 // Get initial count of starred messages
@@ -39,6 +39,7 @@ class MessageViewer extends React.Component {
         this.toggleStarred = this.toggleStarred.bind(this);
         this.trashToggle = this.trashToggle.bind(this);
         this.toggleTrashedMessage = this.toggleTrashedMessage.bind(this);
+        this.highlightText = this.highlightText.bind(this);
 
         // messages
         var messages = Messages.messages;
@@ -83,23 +84,29 @@ class MessageViewer extends React.Component {
         });
     }
 
+    highlightText(text) {
+
+    }
+
     render() {
         return (
             <div>
                 <Header title="MESSAGE VIEWER"/>
                 <MessagesContainer>
-                    <StarredCounter count={this.state.count}/>
+                    <StarredCounter count={this.state.count}/><SearchForm highlightText={this.highlightText}/>
                     <ToggleTrashed onClick={this.trashToggle}>{this.state.trashed_shown ? 'Show Untrashed Messages': 'Show Trashed Messages'}</ToggleTrashed>
                     {this.state.trashed_shown ?
-                        this.state.messages.filter(function(e) {return e.meta.isTrashed == true}).map(message =>
+                        this.state.messages.filter(function(e) {return e.meta.isTrashed == true}).map((message, i) =>
                         <Message 
+                            key={i}
                             content={message} 
                             toggleStarred={this.toggleStarred}
                             toggleTrashedMessage={this.toggleTrashedMessage}
                         />)
                         :
-                        this.state.messages.filter(function(e) {return e.meta.isTrashed == false}).map(message =>
+                        this.state.messages.filter(function(e) {return e.meta.isTrashed == false}).map((message,i) =>
                         <Message 
+                            key={i}
                             content={message} 
                             toggleStarred={this.toggleStarred}
                             toggleTrashedMessage={this.toggleTrashedMessage}
