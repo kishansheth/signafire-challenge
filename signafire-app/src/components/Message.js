@@ -24,7 +24,7 @@ const Profile = styled.div`
 `;
 
 const Content = styled.div`
-    width: 70%;
+    width: 65%;
     text-align: left;
     .metadata {
         padding: 10px;
@@ -38,24 +38,34 @@ const Content = styled.div`
 `;
 
 const Buttons = styled.div`
-    width: 20%;
+    width: 25%;
     text-align: right;
     padding: 10px;
 `;
 
 const StarButton = styled.button`
-    width: 150px;
+    width: 140px;
+    margin: 5px;
     font-size: ${theme.font.sizes.h5};
-    padding: 20px;
+    padding: 10px;
     border: 1px solid ${theme.colors.outline};
     background-color: ${props => props.starred ? "DarkGoldenrod": "white"};
     color: ${props => props.starred ? "white": "black"};
 `;
 
+const TrashButton = styled.button`
+    width: 100px;
+    margin: 5px;
+    font-size: ${theme.font.sizes.h5};
+    padding: 10px;
+    border: 1px solid ${theme.colors.outline};
+    color: white;
+    background-color: ${theme.colors.red};
+`;
+
 class Message extends React.Component {
     constructor(props) {
         super(props);
-        this.toggleStarred = this.toggleStarred.bind(this);
 
         var d = new Date(this.props.content.timestamp);
         var date_string = d.toLocaleString('en-US', {month: 'short'}) + " " + d.getDate() + ', ' + d.getFullYear(); 
@@ -63,13 +73,8 @@ class Message extends React.Component {
         this.state = {
             date:date_string,
             starred:this.props.content.meta.isStarred,
+            trashed:this.props.isTrashed
         };
-    }
-    
-    toggleStarred() {
-        this.setState({starred:!this.state.starred});
-        this.props.changeStarred(!this.state.starred);
-        console.log(this.state.starred);
     }
 
     render() {
@@ -84,7 +89,14 @@ class Message extends React.Component {
                     <div className={'message_body'}>{this.props.content.content}</div>
                 </Content>
                 <Buttons>
-                    <StarButton onClick={this.toggleStarred} starred={this.state.starred}>{this.state.starred == true ? "Starred!": "Star Message!"}</StarButton>
+                    <TrashButton 
+                            onClick={() => {this.props.toggleTrashedMessage(this.props.content.id)}}>
+                            {this.props.content.meta.isTrashed == true ? "Untrash": "Trash"}</TrashButton>
+                    <StarButton 
+                        onClick={() => {this.props.toggleStarred(this.props.content.id)}} 
+                        starred={this.props.content.meta.isStarred}>
+                        {this.props.content.meta.isStarred ? "Starred!": "Star Message!"}
+                    </StarButton>
                 </Buttons>
             </MessageContainer>
         )
